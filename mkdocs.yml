@@ -1,7 +1,7 @@
 site_name: CUPID-seq
 site_description: Containerized dual-index demultiplexing pipeline for 16S amplicon sequencing
-repo_url: https://github.com/rlporter24/CUPID-seq
-repo_name: rlporter24/CUPID-seq
+repo_url: https://github.com/kchuanglab/CUPID-seq
+repo_name: kchuanglab/CUPID-seq
 
 theme:
   name: material
@@ -51,3 +51,4 @@ nav:
   - Getting Started: getting-started.md
   - Configuration: configuration.md
   - Troubleshooting: troubleshooting.md
+
