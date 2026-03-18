@@ -38,13 +38,8 @@ To analyze our code to analyze dual-indexed sequencing data, first ensure that D
   `docker run -it rlporter24/demux-dada2:1.0`\
   to open a container from the image rlporter24/dualindex-demux in an interactive mode (specified by the flags -it). If you built your own image, replace 'rlporter24/dualindex-demux' with the  '{name}:{version}' you provided for the build.\
 \
-In this mode, we can enter a series of commands, step by step within this container. All of the necessary input files are already included within the container, so no files need to be imported. To run the test, navigate to the 16S-demux directory and check that 'Snakefile’ line 4 reads:\
-  `configfile: "config/test_config.yaml"`\
-  rather than:\
-  `configfile: "config/config.yaml"`\
-\
-Next, run:\
-`snakemake --cores 1`\
+In this mode, we can enter a series of commands, step by step within this container. All of the necessary input files are already included within the container, so no files need to be imported. To run the test, navigate to the 16S-demux directory and run:\
+`snakemake -s test_Snakefile --cores 1`\
 replacing 1 with the desired number of cores. This should take about 10 minutes or fewer, and will run a test analysis using ‘config/test_fastq.txt’, ‘config/test_samplesheet.txt’ and test files included in /fastq_data/test/. The output files will be generated in the ‘workflow/test_out/’ directory. If the run is successful, the following outputs should be generated in ‘workflow/test_out/trimmed’:\
  <img src="https://github.com/rlporter24/Amplicon-dual-index-demux/blob/main/images/testSuccessOutputs.png?raw=true" alt="Alt Text" width="400" height="1000">\
   If these files are generated in 'workflow/test_out/' the run has been successful!\
@@ -60,10 +55,7 @@ replacing 1 with the desired number of cores. This should take about 10 minutes 
   `docker container ls` to list all the current containers, or by looking at the containers in the docker decktop GUI.\
 The {container_path} should be provided relative to the '16s-demux' directory, which is the home directory within the container.\
 \
-  Navigate to the 16S-demux directory and if necessary, edit line 4 so that it reads:\
-  `configfile: “config/config.yaml”`\
-  rather than\
-  `configfile: “config/test_config.yaml”`\
+
   In the ‘config’ directory, update ‘config.yaml’ so that `samplesheet:` and `fastqlist:` in lines 2 and 4 are followed by the paths to your input samplesheet and fastqlist, respectively (more details in the __Inputs__ section). If you are using custom primers or indexes, you may need to adjust the input file for ‘indicies:’ or the lengths of read1 and read2 indexes and primers (lines 3, 5, 6, 7, 8). For more details on custom primers, see the __Custom Primers__ section.\
   Once the inputs and paths are updated, run:\
   `snakemake --cores 1`\
