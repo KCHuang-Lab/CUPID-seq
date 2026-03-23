@@ -73,14 +73,14 @@ This will not remove the image - only the container that was just now built usin
 Most HPC are not compatible with Docker use, but do support Singularity/Apptainer. To run using Apptainer, follow these steps:
 
 1. **Setting up the Singularity/Apptainer image**\
-   First, ensure that Singularity/Apptainer is installed. The pre-built Singularity image is not currently available for direct download, but the Singularity image can be built locally fairly quickly ( ~10 minutes) and only requires that some specific files be made available locally. Instructions are included in the ‘Building Images’ section below. Once the build is successfully completed, you should have a file named ‘demux-image.sif’ in the directory from which it was built.
+   First, ensure that Singularity/Apptainer is installed. The pre-built Singularity image is not currently available for direct download, but the Singularity image can be built locally (which takes ~1 hour) and only requires that some specific files be made available locally. Instructions are included in the ‘Building Images’ section below. Once the build is successfully completed, you should have a file named ‘demux-dada2.sif’ in the directory from which it was built.
 
 ### Running Interactively (Not Recommended):
 Depending on the resources available locally, you can run the analysis in an interactive Singularity shell, rather than submitting a job to a resource manager. It is highly unlikely that a login node will provide sufficient resources, so check this before starting and use a compute node as needed. Running interactively is only recommended for testing inputs or troubleshooting. If you choose to run interactively follow these steps:
 
 2. **Open a shell in the container**\
    To open a shell, run the following command from the directory containing the ‘demux-image.sif’:\
-   `singularity shell demux-image.sif` \
+   `singularity shell demux-dada2.sif` \
    This will bring you to a shell within the container where you can interactively run processes.\
 
 
@@ -109,7 +109,7 @@ Most HPC clusters will use a resource manager, such as Slurm. To run the analysi
 
 2. **Run the test analysis**\
 To check that the set up was successful, run a quick analysis using provided test data. To do this, edit the draft script ('submit_test_snakemake.sh') to submit to a job manager. The script should run the following line from the 16s-demux direcotry:\
-  `singularity exec ../demux-image.sif snakemake --cores 1 -s test_Snakefile`. (Replace 1 with the desired number of cores)\
+  `singularity exec ../demux-dada2.sif snakemake --cores 1 -s test_Snakefile`. (Replace 1 with the desired number of cores)\
 This should take around 10 minutes depending on your system, and will run a test analysis using ‘config/test_fastq.txt’, ‘config/test_samplesheet.txt’, and the test files included in /fastq_data/test/. The output files will be generated in the ‘workflow/test_out/’ directory. If the run is successful, the following outputs should be generated within the test_out/trimmed directory:\
      <img src="https://github.com/kchuanglab/Amplicon-dual-index-demux/blob/main/images/testSuccessOutputs.png?raw=true" alt="Alt Text" width="400" height="1000">\
      ### ^ THIS WILL NEED TO BE UPDATED WITH NEW NAMES!\
@@ -118,8 +118,8 @@ This should take around 10 minutes depending on your system, and will run a test
 
 4. **Run the actual analysis**\
 To run the actual analysis, ensure your input files are accurate and located in the correct directory (see >Inputs for details), and ensure that the paths within ‘config/config.yaml’ are correct. Next edit and use a submission script as above to run the command:\
-`singularity exec ../demux-image.sif snakemake --cores 1`. (Replace 1 with the desired number of cores)\
-A dfradt script is provided as 'submit_snakemake.sh'.\
+`singularity exec ../demux-dada2.sif snakemake --cores 1`. (Replace 1 with the desired number of cores)\
+A draft script is provided as 'submit_snakemake.sh'.\
 \
   __Note:__ To use this submission script, be sure to change the SBATCH parameters at the top as needed.
 
@@ -220,14 +220,14 @@ To build a singularity/Apptainer image, ensure the necessary files are arranged 
 
 
 2. Move to the directory containing the def file (16s-demux.def) and run the following:\
-`singularity build demux-image.sif 16s-demux.def`\
+`singularity build demux-dada2.sif 16s-demux.def`\
 \
 The image will be created locally and a file ‘demux-image.sif’ will be created in the current working directory. The build should take less than 10 minutes, and if it is completed successfully, the the final output will look something like this:\
 <img src="https://github.com/kchuanglab/Amplicon-dual-index-demux/blob/main/images/buildSuccessOutput.png?raw=true" alt="Alt Text" width="750" height="400">\
 \
-Once completed, the file 'demux-image.sif' should be found in the current working directory.
+Once completed, the file 'demux-dada2.sif' should be found in the current working directory.
 
-__Note:__ This step will likely require more resources than are available on a HPC login node, so be sure you are on a compute node or use a job manager to allocate resources. A template slurm script is included in the demux.zip file, named 'slurmBuild.sh'. You may choose to change the node/memory/timing steps based on your system.
+__Note:__ This step will likely require more resources than are available on a HPC login node, so be sure you are on a compute node or use a job manager to allocate resources. A template slurm script is included in the demux-dada2.zip file, named 'slurmBuild.sh'. You may choose to change the node/memory/timing steps based on your system.
 
 3. Now that the image has been built, you can run the demultiplexing analysis within it as described in ‘> Using Singularity/Apptainer’ using the image ‘demux-image.sif’. 
 
