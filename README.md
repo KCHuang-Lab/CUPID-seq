@@ -1,6 +1,6 @@
 # 16S-dual-index
 
-[![Documentation](https://img.shields.io/badge/docs-online-5b9aa0)](https://kchuanglab.github.io/CUPID-seq/)
+[![Documentation](https://img.shields.io/badge/docs-online-5b9aa0)](https://kchuang-lab.github.io/CUPID-seq/)
 
 The following document describes how to use the Docker and Singularity/Apptainer images to use our demultiplexing code. By using these containerization platforms, users can avoid the time consuming process of installing dependencies and configuring environments and conduct analyses in a highly reproducible manner. 
 
