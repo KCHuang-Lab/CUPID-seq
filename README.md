@@ -5,13 +5,13 @@
 The following document describes how to use the Docker and Singularity/Apptainer images to use our demultiplexing code. By using these containerization platforms, users can avoid the time consuming process of installing dependencies and configuring environments and conduct analyses in a highly reproducible manner. 
 
 **Contents:**
-* [Using Docker](https://github.com/kchuanglab/Amplicon-dual-index-demux/blob/main/README.md#using-docker)
-* [Using Singularity/Apptainer](https://github.com/kchuanglab/Amplicon-dual-index-demux/blob/main/README.md#using-singularityapptainer)
-* [Inputs](https://github.com/kchuanglab/Amplicon-dual-index-demux/blob/main/README.md#inputs)
-* [Building Images](https://github.com/kchuanglab/Amplicon-dual-index-demux/blob/main/README.md#building-images)
-* [Building with Docker](https://github.com/kchuanglab/Amplicon-dual-index-demux/blob/main/README.md#building-with-docker)
-* [Building with Singularity/Apptainer](https://github.com/kchuanglab/Amplicon-dual-index-demux/blob/main/README.md#building-with-singularityapptainer)
-* [Custom Primers](https://github.com/kchuanglab/Amplicon-dual-index-demux/blob/main/README.md#custom-primers)
+* [Using Docker](https://github.com/KCHuang-Lab/Amplicon-dual-index-demux/blob/main/README.md#using-docker)
+* [Using Singularity/Apptainer](https://github.com/KCHuang-Lab/Amplicon-dual-index-demux/blob/main/README.md#using-singularityapptainer)
+* [Inputs](https://github.com/KCHuang-Lab/Amplicon-dual-index-demux/blob/main/README.md#inputs)
+* [Building Images](https://github.com/KCHuang-Lab/Amplicon-dual-index-demux/blob/main/README.md#building-images)
+* [Building with Docker](https://github.com/KCHuang-Lab/Amplicon-dual-index-demux/blob/main/README.md#building-with-docker)
+* [Building with Singularity/Apptainer](https://github.com/KCHuang-Lab/Amplicon-dual-index-demux/blob/main/README.md#building-with-singularityapptainer)
+* [Custom Primers](https://github.com/KCHuang-Lab/Amplicon-dual-index-demux/blob/main/README.md#custom-primers)
 
 ## Using Docker
 To analyze our code to analyze dual-indexed sequencing data, first ensure that Docker is installed. Docker is a handy platform for sharing not only code but also coding environments, which enables easy code sharing without hours of installing dependencies. You can find instructions on Docker installation here {https://docs.docker.com/engine/install/}. Once Docker is installed, open the Docker desktop application or run ‘systemctl start docker’ to launch the Docker Daemon. 
@@ -34,7 +34,7 @@ To analyze our code to analyze dual-indexed sequencing data, first ensure that D
   to open a container from the image rlporter24/dualindex-demux in an interactive mode (specified by the flags -it). If you built your own image, replace 'rlporter24/dualindex-demux' with the  '{name}:{version}' you provided for the build. In this mode, we can enter a series of commands, step by step within this container. All of the necessary input files are already included within the container, so no files need to be imported. To run the test, run:\
   `snakemake --cores 1 -s test_Snakefile`\
  (or replace 1 with the desired number of cores for this run)\. This should take under 5 minutes, and will run a test analysis using ‘config/test_fastq.txt’, ‘config/test_samplesheet.txt’ and test files included in /fastq_data/test/. The output files will be generated in the ‘workflow/test_out/’ directory. If the run is successful, the following outputs should be generated in ‘workflow/test_out/trimmed’:\
- <img src="https://github.com/kchuanglab/Amplicon-dual-index-demux/blob/main/images/testSuccessOutputs.png?raw=true" alt="Alt Text" width="400" height="1000">\
+ <img src="https://github.com/KCHuang-Lab/Amplicon-dual-index-demux/blob/main/images/testSuccessOutputs.png?raw=true" alt="Alt Text" width="400" height="1000">\
 ### ^ THIS WILL NEED TO BE UPDATED WITH NEW NAMES!\
 
   If these files are generated in ‘trimmed’, the run has been successful! To exit the container, simply type ‘exit’, or stay in the container to run the actual analysis.
@@ -53,7 +53,7 @@ In the ‘config’ directory, update ‘config.yaml’ so that `samplesheet:` a
 Once the inputs and paths are updated, run:\
 `snakemake --cores 1`\
 within the 16S-demux directory (replacing 1 with the desired number of cores). The analysis time will vary with the number and size of input files as well as the machine used. If the run is successful, a message similar to that below should be output:\
-<img src="https://github.com/kchuanglab/Amplicon-dual-index-demux/blob/main/images/snakemakeSuccessOutput.png?raw=true" alt="Alt Text" width="750" height="400">\
+<img src="https://github.com/KCHuang-Lab/Amplicon-dual-index-demux/blob/main/images/snakemakeSuccessOutput.png?raw=true" alt="Alt Text" width="750" height="400">\
 \
 __Note:__ Before starting the actual run, you can use the command ‘snakemake -n’ to do a dry run. This is helpful for ensuring that names and file locations are correct before starting the full run.
 
