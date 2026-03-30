@@ -4,10 +4,9 @@
 
 ## Key Features
 
-- **Containerized** — runs in Docker or Singularity/Apptainer with zero dependency setup
+- **Containerized** — runs in Docker or Singularity/Apptainer with minimal dependency setup
 - **Reproducible** — identical environments across local machines and HPC clusters
 - **Flexible** — supports 13 pre-built 16S primer/index sets plus custom primers
-- **DADA2 Integration** — optional downstream species inference with DADA2
 
 ## Pipeline Overview
 
