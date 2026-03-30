@@ -325,7 +325,7 @@ Within ‘workflow’, there should be a ‘test_out’ directory, containing �
 
 Within the ‘trimmed’ directory, there should be two subdirectories, ‘group1’ and 'group2', and within each of those, there should be directories ‘R1’, ‘R2’, ‘removed’, and two summary files: ‘lowReadsSummary.txt’, and ‘summary.txt’: 
 
- <img src="https://github.com/kchuanglab/Amplicon-dual-index-demux/blob/main/images/testSuccessOutputs_2.png?raw=true" alt="Alt Text" height="600">
+ <img src="https://github.com/KCHuang-Lab/CUPID-seq/blob/main/images/testSuccessOutputs_2.png?raw=true" alt="Alt Text" height="600">
 
 If these files are generated in ‘trimmed’, the run has been successful!
 
