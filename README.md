@@ -1,4 +1,6 @@
-# 16S-dual-index
+# CUPID-seq
+<img src="https://github.com/KCHuang-Lab/CUPID-seq/blob/main/images/CUPID-seq-logo.png?raw=true" alt="Alt Text" width="400" height="1000">\
+
 
 [![Documentation](https://img.shields.io/badge/docs-online-5b9aa0)](https://kchuang-lab.github.io/CUPID-seq/)
 
