@@ -1,10 +1,14 @@
 # CUPID-seq
-<img src="https://github.com/KCHuang-Lab/CUPID-seq/blob/main/images/CUPID-seq-logo.png?raw=true" alt="Alt Text" width="400" height="1000">\
-
-
 [![Documentation](https://img.shields.io/badge/docs-online-5b9aa0)](https://kchuang-lab.github.io/CUPID-seq/)
 
+
 The following document describes how to use the Docker and Singularity/Apptainer images to use our demultiplexing code. By using these containerization platforms, users can avoid the time consuming process of installing dependencies and configuring environments and conduct analyses in a highly reproducible manner. 
+
+<img align="center" src="https://github.com/KCHuang-Lab/CUPID-seq/blob/main/images/CUPID-seq-logo.png?raw=true" alt="Alt Text" width="150" height="500" >
+
+
+
+
 
 **Contents:**
 * [Using Docker](https://github.com/KCHuang-Lab/CUPID-seq/blob/main/README.md#using-docker)
