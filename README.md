@@ -24,7 +24,7 @@ To analyze our code to analyze dual-indexed sequencing data, first ensure that D
 
 
 1. **Installation and setting up the Docker image** \
-  There are two ways to acquire the docker image needed for analysis, either by pulling directly from docker hub (the easiest approach) or using the dockerfile and other inputs provided in 'docker-demux.zip' (available on ZENODO LINK) to build the docker image.\
+  There are two ways to acquire the docker image needed for analysis, either by pulling directly from docker hub (the easiest approach) or using the Dockerfile and other inputs provided here in 'demux/docker_image_files' to build the docker image.\
 \
   **Pulling image:** \
   Launch Docker. Then in a terminal, run:\
@@ -32,12 +32,12 @@ To analyze our code to analyze dual-indexed sequencing data, first ensure that D
  This will make a local copy of the Docker image 'rlporter24/dualindex-demux', which contains the code and environment needed to process the data, as well as example input files for running a test.\
 \
   **Building image:**\
-  Instead of pulling the docker image from the Docker hub, the docker image can also be built from the Dockerfile. This process takes longer and is not recommended, but is described in the >Building images section below. 
+  Instead of pulling the docker image from the Docker hub, the docker image can also be built from the Dockerfile. This process takes longer and is not recommended, but is described in the [Building with Docker](https://github.com/KCHuang-Lab/CUPID-seq/blob/main/README.md#building-with-docker) section below. 
 
 3. **Run the test analysis**
   To check that the set up was successful, run a quick analysis using provided test data. Start by running\
   `docker run -it rlporter24/dualindex-demux:1.0`\
-  to open a container from the image rlporter24/dualindex-demux in an interactive mode (specified by the flags -it). If you built your own image, replace 'rlporter24/dualindex-demux' with the  '{name}:{version}' you provided for the build. In this mode, we can enter a series of commands, step by step within this container. All of the necessary input files are already included within the container, so no files need to be imported. To run the test, run:\
+  to open a container from the image rlporter24/dualindex-demux in an interactive mode (specified by the flags -it). If you built your own image, replace 'rlporter24/dualindex-demux' with the  '{name}:{version}' you provided for the build. In this mode, we can enter a series of commands, step by step within this container. All of the necessary input files for the test analysis are already included within the container, so no files need to be imported. To run the test, run:\
   `snakemake --cores 1 -s test_Snakefile`\
  (or replace 1 with the desired number of cores for this run)\. This should take under 5 minutes, and will run a test analysis using ‘config/test_fastq.txt’, ‘config/test_samplesheet.txt’ and test files included in /fastq_data/test/. The output files will be generated in the ‘workflow/test_out/’ directory. If the run is successful, the following outputs should be generated in ‘workflow/test_out/trimmed’:\
  <img src="https://github.com/KCHuang-Lab/CUPID-seq/blob/main/docs/images/testSuccessOutputs.png?raw=true" alt="Alt Text" width="400" height="1000">\
