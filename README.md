@@ -223,7 +223,7 @@ To build a singularity/Apptainer image, ensure the necessary files are arranged 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="https://github.com/KCHuang-Lab/CUPID-seq/blob/main/docs/images/demux_fileStructure_dark.png?raw=true">
   <source media="(prefers-color-scheme: light)" srcset="https://github.com/KCHuang-Lab/CUPID-seq/blob/main/docs/images/demux_fileStructure.png?raw=true">
-  <img src="https://github.com/KCHuang-Lab/CUPID-seq/blob/main/docs/images/demux_fileStructure.png?raw=true" alt="Alt Text" width="400" height="400">
+  <img src="https://github.com/KCHuang-Lab/CUPID-seq/blob/main/docs/images/demux_fileStructure.png?raw=true" alt="Alt Text" width="600">
 </picture>
 \
 ‘16s-demux.def’ and ‘requirements.txt’ are both needed for the building process, and the fastq_data contains example data for the test. All of the code is contained within the ‘16S-demux’ directory, and outputs will be generated there as well.
