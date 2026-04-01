@@ -58,7 +58,7 @@ In the ‘config’ directory, update ‘config.yaml’ so that `samplesheet:` a
 Once the inputs and paths are updated, run:\
 `snakemake --cores 1`\
 within the 16S-demux directory (replacing 1 with the desired number of cores). The analysis time will vary with the number and size of input files as well as the machine used. If the run is successful, a message similar to that below should be output:\
-<img src="https://github.com/KCHuang-Lab/CUPID-seq/blob/main/docs/images/snakemakeSuccessOutput.png?raw=true" alt="Alt Text" width="750" height="400">\
+<img src="https://github.com/KCHuang-Lab/CUPID-seq/blob/main/docs/images/snakemakeSuccessOutput.png?raw=true" alt="Alt Text" width="500" height="260">\
 \
 __Note:__ Before starting the actual run, you can use the command `snakemake -n` to do a dry run. This is helpful for ensuring that names and file locations are correct before starting the full run.
 
@@ -78,43 +78,44 @@ This will not remove the image - only the container that was just now built usin
 Most HPC are not compatible with Docker use, but do support Singularity/Apptainer. To run using Apptainer, follow these steps:
 
 1. **Setting up the Singularity/Apptainer image**\
-   First, ensure that Singularity/Apptainer is installed. The pre-built Singularity image is not currently available for direct download, but the Singularity image can be built locally (which takes ~1 hour) and only requires that some specific files be made available locally. Instructions are included in the ‘Building Images’ section below. Once the build is successfully completed, you should have a file named ‘demux-dada2.sif’ in the directory from which it was built.
+   First, ensure that Singularity/Apptainer is installed. The pre-built Singularity image is not currently available for direct download, but the Singularity image can be built locally (which takes ~1 hour) and only requires that some specific files be made available locally. Instructions are included in the ‘Building Images’ section below. Once the build is successfully completed, you should have a file named ‘demux-image.sif’ in the directory from which it was built.
 
 ### Running Interactively (Not Recommended):
-Depending on the resources available locally, you can run the analysis in an interactive Singularity shell, rather than submitting a job to a resource manager. It is highly unlikely that a login node will provide sufficient resources, so check this before starting and use a compute node as needed. Running interactively is only recommended for testing inputs or troubleshooting. If you choose to run interactively follow these steps:
+Depending on the resources available locally, you can run the analysis in an interactive Singularity shell, rather than submitting a job to a resource manager. It is highly unlikely that a login node will provide sufficient resources, so check this before starting and use a compute node as needed. Running interactively (with sufficient resources allocated) is highly recommended for testing inputs or troubleshooting, and can facilitate faster analyses than submitting via a resource manager. If you choose to run interactively follow these steps:
 
 2. **Open a shell in the container**\
    To open a shell, run the following command from the directory containing the ‘demux-image.sif’:\
-   `singularity shell demux-dada2.sif` \
+   `singularity shell demux-image.sif` \
    This will bring you to a shell within the container where you can interactively run processes.\
 
 
 3. **Run the test analysis**\
-   To check that the set up was successful, run a quick analysis using provided test data. To do this, run:\
+   To check that the set up was successful, run a quick analysis using provided test data. To do this, navigate to the `16S-demux` directory and run:\
   `snakemake --cores 1 -s test_Snakefile`
-  within the ‘16S_demux_edits’ directory. This should take about 16 minutes depending on your system, and will run a test analysis using ‘config/test_fastq.txt’,   ‘config/test_samplesheet.txt’ and the test files included in /fastq_data/test/. The output files will be generated in the ‘workflow/test_out/’ directory. If the run is successful, the following outputs should be generated within the test_out/trimmed directory:\
+   This should take about 10 minutes depending on your system, and will run a test analysis using ‘config/test_fastq_list.txt’,   ‘config/test_samplesheet.txt’ and the test files included in '/test_fastq_data/'. The output files will be generated in the ‘workflow/test_out/’ directory. If the run is successful, the following outputs should be generated within the test_out/trimmed directory:\
      <img src="https://github.com/KCHuang-Lab/CUPID-seq/blob/main/docs/images/testSuccessOutputs_2.png?raw=true" alt="Alt Text" width="400" height="1000">\
   If the files are generated in the ‘trimmed’ directory are all present, the run has been successful.\
   To exit the container, simply type ‘exit’.
 
 5. **Run the actual analysis**\
-  To run the actual analysis, ensure your input files are accurate and located in the correct directory (see >Inputs for details), and ensure that the paths within ‘config/config.yaml’ are correct. 
+  To run the actual analysis, ensure your input files are accurate and located in the correct directory (see [Inputs](https://github.com/KCHuang-Lab/CUPID-seq/blob/main/README.md#inputs) for details), and ensure that the paths within ‘config/config.yaml’ are correct. 
 \
-  If you aren’t using a job manager like slurm, you can use the command:\
+  Then run the command:\
   `snakemake --cores 1`\
-  in the 16S-demux directory to start the analysis.\
+  in the 16S-demux directory to start the analysis. Adjust the number of cores as desired, in accordance with the cores available to you.\
 \
 The analysis time will vary with the number and size of input files. If the run is successful, a message similar to that below should be output:\
   <img src="https://github.com/KCHuang-Lab/CUPID-seq/blob/main/docs/images/snakemakeSuccessOutput.png?raw=true" alt="Alt Text" width="750" height="400">\
 __Note:__ Before starting the actual run, you can use the command `snakemake -n` to do a dry run. This is helpful for ensuring that names and file locations are correct before starting the full run.
 
 ### Running with resource manager:
-Most HPC clusters will use a resource manager, such as Slurm. To run the analysis through a manager, complete step 1 above, and then follow the instructions in this section. The code includes draft scripts for submitting through Slurm, but these can be adapted to other systems. 
+Most HPC clusters will use a resource manager, such as SLURM. To run the analysis through a manager, complete step 1 above, and then follow the instructions in this section. The code includes draft scripts for submitting through SLURM, but these can be adapted to other systems. 
 
 2. **Run the test analysis**\
-To check that the set up was successful, run a quick analysis using provided test data. To do this, edit the draft script ('submit_test_snakemake.sh') to submit to a job manager. The script should run the following line from the 16s-demux direcotry:\
-  `singularity exec ../demux-dada2.sif snakemake --cores 1 -s test_Snakefile`. (Replace 1 with the desired number of cores)\
-This should take around 10 minutes depending on your system, and will run a test analysis using ‘config/test_fastq.txt’, ‘config/test_samplesheet.txt’, and the test files included in /fastq_data/test/. The output files will be generated in the ‘workflow/test_out/’ directory. If the run is successful, the following outputs should be generated within the test_out/trimmed directory:\
+To check that the set up was successful, run a quick analysis using provided test data. To do this, run the following command:\
+`snakemake --cores 1 --use-singularity --executor slurm --profile config/profile/`\
+Replace 1 with the desired number of cores, and edit `config/profile/config.yaml` to adjust other run parameters, such as the memory and runtime.\
+This should take around 10 minutes depending on your system, and will run a test analysis using ‘config/test_fastq_list.txt’, ‘config/test_samplesheet.txt’, and the test files included in /test_fastq_data/. The output files will be generated in the ‘workflow/test_out/’ directory. If the run is successful, the following outputs should be generated within the test_out/trimmed directory:\
      <img src="https://github.com/KCHuang-Lab/CUPID-seq/blob/main/docs/images/testSuccessOutputs_2.png?raw=true" alt="Alt Text" width="400" height="1000">\
    \
   If the files are generated in the ‘trimmed’ directory are all present, the run has been successful.\
