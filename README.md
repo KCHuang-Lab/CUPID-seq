@@ -220,12 +220,16 @@ To build a singularity/Apptainer image, ensure the necessary files are arranged 
 
 1. All necessary files are included in ‘demux.zip’ in **ZENODO LOCATION**. Download and unzip the file. The following file structure should be created:\
 \
- <img src="https://github.com/KCHuang-Lab/CUPID-seq/blob/main/docs/images/sing_demux_fileStructure.png?raw=true" alt="Alt Text" width="400" height="400">\
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="https://github.com/KCHuang-Lab/CUPID-seq/blob/main/docs/images/demux_fileStructure_dark.png?raw=true">
+  <source media="(prefers-color-scheme: light)" srcset="https://github.com/KCHuang-Lab/CUPID-seq/blob/main/docs/images/demux_fileStructure.png?raw=true">
+  <img src="https://github.com/KCHuang-Lab/CUPID-seq/blob/main/docs/images/demux_fileStructure.png?raw=true" alt="Alt Text" width="400" height="400">
+</picture>
 \
 ‘16s-demux.def’ and ‘requirements.txt’ are both needed for the building process, and the fastq_data contains example data for the test. All of the code is contained within the ‘16S-demux’ directory, and outputs will be generated there as well.
 
 
-2. Move to the directory containing the def file (16s-demux.def) and run the following:\
+3. Move to the directory containing the def file (16s-demux.def) and run the following:\
 `singularity build demux-dada2.sif 16s-demux.def`\
 \
 The image will be created locally and a file ‘demux-image.sif’ will be created in the current working directory. The build should take less than 10 minutes, and if it is completed successfully, the the final output will look something like this:\
