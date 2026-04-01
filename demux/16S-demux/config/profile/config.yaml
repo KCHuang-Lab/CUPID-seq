@@ -11,8 +11,8 @@ rerun-incomplete: True
 latency-wait: 60
 
 default-resources:
-  - mem_mb=4000
-  - runtime=60
-  - disk_mb=1000
+  - mem_mb=32000
+  - runtime=120
+  - disk_mb=32000
 
 singularity-args: "--cleanenv"
