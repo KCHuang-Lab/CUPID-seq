@@ -80,22 +80,18 @@ Most HPC are not compatible with Docker use, but do support Singularity/Apptaine
 1. **Setting up the Singularity/Apptainer image**\
    First, ensure that Singularity/Apptainer is installed. The pre-built Singularity image is not currently available for direct download, but the Singularity image can be built locally (which takes ~1 hour) and only requires that some specific files be made available locally. Instructions are included in the ‘Building Images’ section below. Once the build is successfully completed, you should have a file named ‘demux-image.sif’ in the directory from which it was built.
 
-### Running Interactively (Not Recommended):
-Depending on the resources available locally, you can run the analysis in an interactive Singularity shell, rather than submitting a job to a resource manager. It is highly unlikely that a login node will provide sufficient resources, so check this before starting and use a compute node as needed. Running interactively (with sufficient resources allocated) is highly recommended for testing inputs or troubleshooting, and can facilitate faster analyses than submitting via a resource manager. If you choose to run interactively follow these steps:
+### Running without a resource manager:
+Depending on the resources available locally, you can run the analysis on a compute node, rather than submitting a job to a resource manager. It is highly unlikely that a login node will provide sufficient resources, so check this before starting and ensure you have adequate resource allocated. Running interactively (with sufficient resources allocated) is highly recommended for testing inputs or troubleshooting, and can facilitate faster analyses than submitting via a resource manager. If you choose to run interactively follow these steps:
 
 2. **Open a shell in the container**\
-   To open a shell, run the following command from the directory containing the ‘demux-image.sif’:\
-   `singularity shell demux-image.sif` \
-   This will bring you to a shell within the container where you can interactively run processes.\
-
+   Navigate to the `16S-demux` directory. 
 
 3. **Run the test analysis**\
-   To check that the set up was successful, run a quick analysis using provided test data. To do this, navigate to the `16S-demux` directory and run:\
-  `snakemake --cores 1 -s test_Snakefile`
-   This should take about 10 minutes depending on your system, and will run a test analysis using ‘config/test_fastq_list.txt’,   ‘config/test_samplesheet.txt’ and the test files included in '/test_fastq_data/'. The output files will be generated in the ‘workflow/test_out/’ directory. If the run is successful, the following outputs should be generated within the test_out/trimmed directory:\
+   To check that the set up was successful, run a quick analysis using provided test data. To do this, run:\
+  `snakemake --cores 1 -s test_Snakefile --use-singularity`
+   This should take about 10 minutes depending on your system, and will run a test analysis using ‘config/test_fastq_list.txt’,   ‘config/test_samplesheet.txt’ and the test files included in '/test_fastq_data/'. The output files will be generated in the ‘workflow/test_out/’ directory. If the run is successful, the following outputs should be generated within the 'workflow/test_out/trimmed' directory:\
      <img src="https://github.com/KCHuang-Lab/CUPID-seq/blob/main/docs/images/testSuccessOutputs_2.png?raw=true" alt="Alt Text" width="400" height="1000">\
-  If the files are generated in the ‘trimmed’ directory are all present, the run has been successful.\
-  To exit the container, simply type ‘exit’.
+  If the files are generated in the ‘trimmed’ directory are all present, the run has been successful.
 
 5. **Run the actual analysis**\
   To run the actual analysis, ensure your input files are accurate and located in the correct directory (see [Inputs](https://github.com/KCHuang-Lab/CUPID-seq/blob/main/README.md#inputs) for details), and ensure that the paths within ‘config/config.yaml’ are correct. 
@@ -105,7 +101,7 @@ Depending on the resources available locally, you can run the analysis in an int
   in the 16S-demux directory to start the analysis. Adjust the number of cores as desired, in accordance with the cores available to you.\
 \
 The analysis time will vary with the number and size of input files. If the run is successful, a message similar to that below should be output:\
-  <img src="https://github.com/KCHuang-Lab/CUPID-seq/blob/main/docs/images/snakemakeSuccessOutput.png?raw=true" alt="Alt Text" width="750" height="400">\
+  <img src="https://github.com/KCHuang-Lab/CUPID-seq/blob/main/docs/images/snakemakeSuccessOutput.png?raw=true" alt="Alt Text" width="500" height="260">\
 __Note:__ Before starting the actual run, you can use the command `snakemake -n` to do a dry run. This is helpful for ensuring that names and file locations are correct before starting the full run.
 
 ### Running with resource manager:
