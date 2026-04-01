@@ -40,8 +40,7 @@ To analyze our code to analyze dual-indexed sequencing data, first ensure that D
   to open a container from the image rlporter24/dualindex-demux in an interactive mode (specified by the flags -it). If you built your own image, replace 'rlporter24/dualindex-demux' with the  '{name}:{version}' you provided for the build. In this mode, we can enter a series of commands, step by step within this container. All of the necessary input files for the test analysis are already included within the container, so no files need to be imported. To run the test, run:\
   `snakemake --cores 1 -s test_Snakefile`\
  (or replace 1 with the desired number of cores for this run)\. This should take under 5 minutes, and will run a test analysis using ‘config/test_fastq.txt’, ‘config/test_samplesheet.txt’ and test files included in /fastq_data/test/. The output files will be generated in the ‘workflow/test_out/’ directory. If the run is successful, the following outputs should be generated in ‘workflow/test_out/trimmed’:\
- <img src="https://github.com/KCHuang-Lab/CUPID-seq/blob/main/docs/images/testSuccessOutputs.png?raw=true" alt="Alt Text" width="400" height="1000">\
-### ^ THIS WILL NEED TO BE UPDATED WITH NEW NAMES!\
+ <img src="https://github.com/KCHuang-Lab/CUPID-seq/blob/main/docs/images/testSuccessOutputs_2.png?raw=true" alt="Alt Text" width="400" height="1000">\
 
   If these files are generated in ‘trimmed’, the run has been successful! To exit the container, simply type ‘exit’, or stay in the container to run the actual analysis.
 
@@ -94,8 +93,7 @@ Depending on the resources available locally, you can run the analysis in an int
    To check that the set up was successful, run a quick analysis using provided test data. To do this, run:\
   `snakemake --cores 1 -s test_Snakefile`
   within the ‘16S_demux_edits’ directory. This should take about 16 minutes depending on your system, and will run a test analysis using ‘config/test_fastq.txt’,   ‘config/test_samplesheet.txt’ and the test files included in /fastq_data/test/. The output files will be generated in the ‘workflow/test_out/’ directory. If the run is successful, the following outputs should be generated within the test_out/trimmed directory:\
-     <img src="https://github.com/KCHuang-Lab/CUPID-seq/blob/main/docs/images/testSuccessOutputs.png?raw=true" alt="Alt Text" width="400" height="1000">\
-   ### ^ THIS WILL NEED TO BE UPDATED WITH NEW NAMES!\
+     <img src="https://github.com/KCHuang-Lab/CUPID-seq/blob/main/docs/images/testSuccessOutputs_2.png?raw=true" alt="Alt Text" width="400" height="1000">\
   If the files are generated in the ‘trimmed’ directory are all present, the run has been successful.\
   To exit the container, simply type ‘exit’.
 
@@ -117,8 +115,7 @@ Most HPC clusters will use a resource manager, such as Slurm. To run the analysi
 To check that the set up was successful, run a quick analysis using provided test data. To do this, edit the draft script ('submit_test_snakemake.sh') to submit to a job manager. The script should run the following line from the 16s-demux direcotry:\
   `singularity exec ../demux-dada2.sif snakemake --cores 1 -s test_Snakefile`. (Replace 1 with the desired number of cores)\
 This should take around 10 minutes depending on your system, and will run a test analysis using ‘config/test_fastq.txt’, ‘config/test_samplesheet.txt’, and the test files included in /fastq_data/test/. The output files will be generated in the ‘workflow/test_out/’ directory. If the run is successful, the following outputs should be generated within the test_out/trimmed directory:\
-     <img src="https://github.com/KCHuang-Lab/CUPID-seq/blob/main/docs/images/testSuccessOutputs.png?raw=true" alt="Alt Text" width="400" height="1000">\
-     ### ^ THIS WILL NEED TO BE UPDATED WITH NEW NAMES!\
+     <img src="https://github.com/KCHuang-Lab/CUPID-seq/blob/main/docs/images/testSuccessOutputs_2.png?raw=true" alt="Alt Text" width="400" height="1000">\
    \
   If the files are generated in the ‘trimmed’ directory are all present, the run has been successful.\
 
@@ -335,7 +332,7 @@ This will determine the jobs to be run and inform you if there are missing input
 ## Test run full outputs
 Within ‘workflow’, there should be a ‘test_out’ directory, containing ‘demux’ and ‘trimmed’ directories. Under ‘demux’, there should be four sets of 3 files; each should have 1 * .extract.log file, and 2 .fastq.gz files. There should also be two directories: ‘R1’ and ‘R2’. The contents of ‘R1’ and ‘R2’ should have the same filenames (but correspond to forward and reverse reads for the specified sample). For each sample in the above, there should be 8 files, ending with ‘-L * .fastq.gz’, where * is an integer from 0 to 7:
 
- <img src="https://github.com/KCHuang-Lab/CUPID-seq/blob/main/docs/images/TestSuccessOutputs_1.png?raw=true" alt="Alt Text" height="600">
+ <img src="https://github.com/KCHuang-Lab/CUPID-seq/blob/main/docs/images/testSuccessOutputs_3.png?raw=true" alt="Alt Text" height="600">
 
 
 Within the ‘trimmed’ directory, there should be two subdirectories, ‘group1’ and 'group2', and within each of those, there should be directories ‘R1’, ‘R2’, ‘removed’, and two summary files: ‘lowReadsSummary.txt’, and ‘summary.txt’: 
