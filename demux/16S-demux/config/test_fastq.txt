@@ -1,0 +1,5 @@
+read1	read2	file
+../test_fastq_data/sample1_R1_001.fastq.gz	../test_fastq_data/sample1_R2_001.fastq.gz	run1-plate1-A01
+../test_fastq_data/sample2_R1_001.fastq.gz	../test_fastq_data/sample2_R2_001.fastq.gz	run1-plate1-A02
+../test_fastq_data/sample3_R1_001.fastq.gz	../test_fastq_data/sample3_R2_001.fastq.gz	run1-plate1-A03
+../test_fastq_data/sample4_R1_001.fastq.gz	../test_fastq_data/sample4_R2_001.fastq.gz	run1-plate1-A04

@@ -1,0 +1,9 @@
+filename	sample	group
+run1-plate1-A01-L4	final-sample-name-1	group1
+run1-plate1-A02-L4	final-sample-name-2	group1
+run1-plate1-A03-L4	final-sample-name-3	group1
+run1-plate1-A04-L4	final-sample-name-4	group1
+run1-plate1-A01-L5	final-sample-name-5	group2
+run1-plate1-A02-L5	final-sample-name-6	group2
+run1-plate1-A03-L5	final-sample-name-7	group2
+run1-plate1-A04-L5	final-sample-name-8	group2

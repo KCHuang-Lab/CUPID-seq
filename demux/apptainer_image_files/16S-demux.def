@@ -1,0 +1,56 @@
+Bootstrap: docker
+From: ubuntu:22.04
+
+
+# %setup section is used to import files from the host system that will then be used during the %post processing
+%setup
+    mkdir ${SINGULARITY_ROOTFS}/apptainer_temp
+    cp ./requirements.txt ${SINGULARITY_ROOTFS}/apptainer_temp/requirements.txt
+   
+# %post section is used to define the steps that should be run during the build of the container image
+%post
+    ls /tmp
+    # Update package lists and install necessary dependencies
+    apt-get update && \
+    apt-get install -y \
+    build-essential \
+    wget \
+    xorg-dev \
+    libssl-dev \
+    libcurl4-openssl-dev \
+    libxml2-dev \
+    gfortran \
+    libreadline-dev \
+    libbz2-dev \
+    liblzma-dev \
+    libpcre2-dev \
+    libharfbuzz-dev \
+    libfreetype6-dev \
+    libfribidi-dev \
+    libpng-dev \
+    libtiff5-dev \
+    libjpeg-dev \
+    libgc-dev \
+    python3-pip \
+    less \
+    grep \
+    vim \
+    # Additional dependencies can be added here as needed
+    apt-get clean
+    
+    # Install Python requirements (from requirements.txt)
+    pip3 install -r ${SINGULARITY_ROOTFS}/apptainer_temp/requirements.txt
+
+    # Clean up
+    rm -rf /apptainer_temp/*
+
+# %files section is used to copy files into the container image
+%files
+    ../16S-demux [./16S-demux]
+    ../test_fastq_data [./test_fastq_data]
+
+# %runscript section is used to define the default command or script when the container is executed with "apptainer run"
+%runscript
+    # The default entry point (this can be modified depending on what you want to run by default)
+    # exec /bin/bash "$@"
+    echo "Yay, you ran the container, way to go"

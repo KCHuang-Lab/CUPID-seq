@@ -1,0 +1,10 @@
+# Ignore large file intermediates.
+/workflow/out/
+
+# Ignore snakemake log files.
+.snakemake
+.Rhistory
+.git
+
+# Don't ignore any .gitignore files.
+!*.gitignore
