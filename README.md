@@ -198,9 +198,13 @@ __Note:__ Periods in the samplenames are okay for this demultiplexing process, b
 ### Building with Docker:
 To build a Docker image, ensure the necessary field are arranged properly, and build from the Dockerfile:
 1. All necessary files are included in ‘docker-emux.zip’ in **ZENODO LOCATION**. Download and unzip the file. The following file structure should be created:\
-\
-<img src="https://github.com/KCHuang-Lab/CUPID-seq/blob/main/docs/images/docker_demux_fileStructure.png?raw=true" alt="Alt Text" width="400" height="400">\
-\
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="https://github.com/KCHuang-Lab/CUPID-seq/blob/main/docs/images/demux_fileStructure_dark.png?raw=true">
+  <source media="(prefers-color-scheme: light)" srcset="https://github.com/KCHuang-Lab/CUPID-seq/blob/main/docs/images/demux_fileStructure.png?raw=true">
+  <img src="https://github.com/KCHuang-Lab/CUPID-seq/blob/main/docs/images/demux_fileStructure.png?raw=true" alt="Alt Text" width="600">
+</picture>
+
 ‘Dockerfile’ and ‘requirements.txt’ are needed for the building process, and the fastq_data directory contains example data for the test. All of the code is contained within the ‘16s-demux’ directory, and outputs will be generated there as well.
 4. Move to the directory containing the Dockerfile and run the following:\
 ‘docker build -t {name}:{version} .’\
@@ -219,13 +223,14 @@ __Note:__ This step will likely require more resources than are available on a H
 To build a singularity/Apptainer image, ensure the necessary files are arranged properly and build from the '.def' file:
 
 1. All necessary files are included in ‘demux.zip’ in **ZENODO LOCATION**. Download and unzip the file. The following file structure should be created:\
-\
+
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="https://github.com/KCHuang-Lab/CUPID-seq/blob/main/docs/images/demux_fileStructure_dark.png?raw=true">
   <source media="(prefers-color-scheme: light)" srcset="https://github.com/KCHuang-Lab/CUPID-seq/blob/main/docs/images/demux_fileStructure.png?raw=true">
   <img src="https://github.com/KCHuang-Lab/CUPID-seq/blob/main/docs/images/demux_fileStructure.png?raw=true" alt="Alt Text" width="600">
 </picture>
-\
+
+
 ‘16s-demux.def’ and ‘requirements.txt’ are both needed for the building process, and the fastq_data contains example data for the test. All of the code is contained within the ‘16S-demux’ directory, and outputs will be generated there as well.
 
 
