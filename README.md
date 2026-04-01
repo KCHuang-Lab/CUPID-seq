@@ -51,24 +51,24 @@ To analyze our code to analyze dual-indexed sequencing data, first ensure that D
 As before, if you built your own image, replace 'rlporter24/dualindex-demux' with the  '{name}:{version}' you provided for the build. Next, we can move in the input files (The essential inputs will be the raw fastq data, a fastq file list, and a samplesheet. Details on creating these inputs for your actual analysis are included below in >Inputs.). Transfering input files can be done from inside or outside of the container, as described here {https://docs.docker.com/reference/cli/docker/container/cp/}. From outside of the container (in a separate terminal), run:\
   `docker cp {local_path} {CONTAINER}:{container_path}`\
   The {local_path} can be to an individual file or a directory. The {CONTAINER} should be the container name, not the image name. The container name can be found by running 
-  `docker container ls` to list all the current containers, or by looking at the containers in the docker decktop GUI. The {container_path} should be provided relative to the '16s-demux' directory, which is the home   directory within the container.\
+  `docker container ls` to list all the current containers, or by looking at the containers in the docker decktop GUI. The {container_path} can be provided relative to the '16s-demux' directory, which is the home   directory within the container.\
 \
-In the ‘config’ directory, update ‘config.yaml’ so that `samplesheet:` and `fastqlist:` in lines 2 and 4 are followed by the paths to your input samplesheet and fastqlist, respectively (more details in the __Inputs__ section). If you are using custom primers or indexes, you may need to adjust the input file for ‘indicies:’ or the lengths of read1 and read2 indexes and primers (lines 3, 5, 6, 7, 8). For more details on custom primers, see the __Custom Primers__ section.\
+In the ‘config’ directory, update ‘config.yaml’ so that `samplesheet:` and `fastqlist:` in lines 2 and 4 are followed by the paths to your input samplesheet and fastqlist, respectively (more details in the [Inputs](https://github.com/KCHuang-Lab/CUPID-seq/blob/main/README.md#inputs) section). If you are using custom primers or indexes, you may need to adjust the input file for ‘indicies:’ or the lengths of read1 and read2 indexes and primers (lines 3, 5, 6, 7, 8). For more details on custom primers, see the [Custom Primers](https://github.com/KCHuang-Lab/CUPID-seq/blob/main/README.md#custom-primers) section.\
 \
 Once the inputs and paths are updated, run:\
 `snakemake --cores 1`\
 within the 16S-demux directory (replacing 1 with the desired number of cores). The analysis time will vary with the number and size of input files as well as the machine used. If the run is successful, a message similar to that below should be output:\
 <img src="https://github.com/KCHuang-Lab/CUPID-seq/blob/main/docs/images/snakemakeSuccessOutput.png?raw=true" alt="Alt Text" width="750" height="400">\
 \
-__Note:__ Before starting the actual run, you can use the command ‘snakemake -n’ to do a dry run. This is helpful for ensuring that names and file locations are correct before starting the full run.
+__Note:__ Before starting the actual run, you can use the command `snakemake -n` to do a dry run. This is helpful for ensuring that names and file locations are correct before starting the full run.
 
 7. **Transfer Output Files Out**\
 Once the run is completed, output files must be transfered out of the container. To move files located in /16s-demux/workflow/out/ to a local destination, run the following:\
-`docker cp {CONTAINER:/16s-demux/workflow/out/} {local_path}`.\
+`docker cp {CONTAINER}:/16s-demux/workflow/out/ {local_path}`.
 8. **Clean Up**\
 After the run is completed and outputs have been moved out and saved, exit from the container. The remnants of the container created can be removed with the following code:\
 `docker rm  {container name}`\
-This will not remove the image - only the container that was just now built using this image. Be sure any important data or intermediates are transferred out of the container before removing it.\
+This will not remove the image - only the container that was just now built using this image. Be sure any important data or intermediates are transferred out of the container before removing it.
 
 
 
