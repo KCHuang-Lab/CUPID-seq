@@ -36,7 +36,6 @@ COPY ./16S-demux /16S-demux
 COPY ./test_fastq_data /test_fastq_data
 COPY ./docker_image_files/requirements.txt ./requirements.txt
 
-
 # Install Python requirements
 RUN pip3 install -r ./requirements.txt 
 
