@@ -210,7 +210,7 @@ The image will be created locally with the name and version provided following -
 __Note:__ This step will likely require more resources than are available on a HPC login node, so be sure you are on a compute node or use a job manager to allocate resources.
 
 
-6. Now that the image has been build, you can run the demultiplexing analysis within it using the command ‘docker run -it {name}:{version}’
+6. Now that the image has been built, you can run the demultiplexing analysis within it using the command ‘docker run -it {name}:{version}’
 
 
 ### Building with Singularity/Apptainer:
