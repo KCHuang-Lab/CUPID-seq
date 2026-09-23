@@ -4,11 +4,11 @@ This page covers the container file structure, config.yaml settings, input file 
 
 ## Container File Structure
 
-The Docker and Singularity images create the following directory layout:
+The Docker and Singularity images create directory structures with a `16S-demux` directory, with the following directory layout:
 
 ![Container file structure](images/16s-demux_fileStructure.png)
 
-Within the main `16s-demux` directory:
+Within the main `16S-demux` directory:
 
 - **`config/`** — configuration files, fastq file list, samplesheet, and index files
 - **`workflow/rules/`** — analysis code
