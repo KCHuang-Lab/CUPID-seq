@@ -130,7 +130,14 @@ The general file structure created by the Docker/Singularity images is shown bel
 Test files are included within config/ (‘test_config.yaml’, ‘test_fastq.txt’, ‘test_samplesheet.txt’), and the official config.yaml file, fastq file list, and samplesheets should also be included in the config folder. Below, the fastq file list and samplesheets are named ‘fastqlist.txt’ and ‘samplesheet.tsv’ respectively, but the names can vary. The indexfordemux.txt file, includes the unique in-line indices. The default indexfordemux.txt file features the 16S V4 indexes, so this file will need to be swapped with the corresponding indexfordemux.txt file for other regions or custom primers.\ 
 \
 The script for initiating the Snakemake run using Slurm (submitSnakemake.sh) and the Snakefile encoding the analysis are found in the top 16s-demux file.\
-  <img src="https://github.com/KCHuang-Lab/CUPID-seq/blob/main/docs/images/16s-demux_fileStructure.png?raw=true" alt="Alt Text" width="400" height="400">
+
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="https://github.com/KCHuang-Lab/CUPID-seq/blob/main/docs/images/16s-demux_fileStructure_dark.png?raw=true">
+  <source media="(prefers-color-scheme: light)" srcset="https://github.com/KCHuang-Lab/CUPID-seq/blob/main/docs/images/16s-demux_fileStructure.png?raw=true"">
+  <img src="https://github.com/KCHuang-Lab/CUPID-seq/blob/main/docs/images/demux_fileStructure.png?raw=true" alt="Alt Text" height="400">
+</picture>
+  
 
 **Note:** Most common issues in demultiplexing arise from errors in the input files. To help with troubleshooting, a quick check of the inputs will be conducted as the first step of the pipeline, and a summary will be output to '16s-demux/workflow/out/inputCheck_log.txt' (or '16s-demux/workflow/test_out/inputCheck_log.txt' for tests). If you encounter errors during the actual run but not in the test run, it may be helpful to check this log to ensure the inputs are properly formatted.  
 
