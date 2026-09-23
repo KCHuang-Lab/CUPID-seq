@@ -22,7 +22,7 @@ This guide walks through setting up a container image, running the test analysis
     docker pull rlporter24/dualindex-demux:1.0
     ```
 
-    This downloads the pre-built image containing all code, dependencies, and test data.
+    This downloads the pre-built image containing all code, dependencies, and test data. 
 
     ??? info "Advanced: Build from Dockerfile"
 
@@ -123,15 +123,12 @@ Run the included test data to verify your setup works correctly.
 
 ### Verifying Test Output
 
-A successful test run produces output like:
-
-![Test success output](images/testSuccessOutputs.png)
-
-Within `workflow/test_out/`, you should see `demux` and `trimmed` directories:
+Within `workflow/test_out/`, you should see `demux` and `trimmed` directories.
 
 - **`demux/`** — four sets of 3 files (1 `.extract.log` + 2 `.fastq.gz` each), plus `R1/` and `R2/` directories. Each sample should have 8 files ending with `-L*.fastq.gz` (phases 0–7):
 
-    ![Demux output structure](images/TestSuccessOutputs_1.png)
+    ![Demux output structure](images/testSuccessOutputs_4.png)
+    ![Demux R1 output structure](images/testSuccessOutputs_3.png)
 
 - **`trimmed/`** — subdirectories `group1` and `group2`, each containing `R1/`, `R2/`, `removed/`, plus `lowReadsSummary.txt` and `summary.txt`:
 
