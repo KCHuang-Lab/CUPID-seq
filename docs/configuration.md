@@ -43,7 +43,7 @@ All paths are relative to the `config/` directory unless absolute paths are prov
 Three inputs are required beyond the sequencing data itself: a **fastq file list**, a **samplesheet**, and the sequencing **fastq data**.
 
 !!! note
-    Most common pipeline errors arise from input file formatting issues. The pipeline validates inputs automatically — check `workflow/out/inputCheck_log.txt` for any warnings.
+    Most common pipeline errors arise from input file formatting issues. Try using `Supplementary-Manual.xlsx` to automatically build samplesheets. The pipeline validates inputs automatically — check `workflow/out/inputCheck_log.txt` for any warnings.
 
 ### Fastq Data
 
